@@ -35,7 +35,6 @@ function signup(req, res) {
         return res.status(400).send(responseData);
     }
 }
-
 function login(req, res) {
     let data = req.body;
     let responseData = {
@@ -60,13 +59,11 @@ function login(req, res) {
                 authToken: result[0].authToken
             };
             return res.status(200).send(responseData);
-
         })
     } else {
         return res.status(400).send(responseData);
     }
 }
-
 function isAuthenticated(req, res, next) {
     const token = req.headers.auth;
     let response;
@@ -84,7 +81,6 @@ function isAuthenticated(req, res, next) {
         next();
     });
 }
-
 function verifyToken(req, res) {
     const token = req.headers.auth;
     let response;

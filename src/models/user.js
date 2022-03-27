@@ -7,7 +7,7 @@ function signup(data, cb) {
                (Username, Password, CreatedAt, UpdatedAt)
                VALUES 
                (? , ? , now(), now())`;
-
+               
     let values = [];
     values.push(data.username);
     values.push(data.password);
@@ -63,7 +63,7 @@ function login(data, cb) {
 }
 
 function strongLogin(data, cb) {
-    let sql = `SELECT ID as UserId, Username,Password, UserType
+    let sql = `SELECT ID as UserId, Username, Password, UserType
                FROM Users WHERE
                Username = ?`;
     let values = [];
@@ -81,7 +81,7 @@ function strongLogin(data, cb) {
                 UserType: result[0].UserType,
                 authToken: token
                 }
-            ]; 
+            ];
             cb(err, response);
         } else {
             cb(err, []);

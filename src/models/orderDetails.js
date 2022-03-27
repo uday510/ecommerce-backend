@@ -30,7 +30,7 @@ function findOrderByUser(data, cb) {
     var values = [];
     values.push(data.userId);
     sqlConnection.executeQuery(sql, values, function(err, result) {
-        cn(err, result);
+        cb(err, result);
     });
 }
 
@@ -74,6 +74,7 @@ function getOrderDetails(data, cb) {
     var values = [];
     values.push(data.userId);
     sqlConnection.executeQuery(sql, values, function(err, result) {
+        console.log("ERROR >>> ", err)
         cb(err, result);
     });
 }

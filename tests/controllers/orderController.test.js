@@ -66,6 +66,7 @@ test('Order controller should create order', async () => {
     const addOrderSpy = jestMock.spyOn(orderItem, 'addOrderItem').mockImplementation((data, cb) => {
         cb(null, null);
     });
+    
     const req = mockRequest();
     req.body = {
         userId: 1,
@@ -86,3 +87,4 @@ test('Order controller should create order', async () => {
         }
     });
 });
+

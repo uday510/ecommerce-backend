@@ -31,6 +31,10 @@ function addProduct(req, res) {
         })
     })
   }
+  else {
+        console.log(data);
+        return res.status(404).send({"msg": "Something went wrong", data});
+    }
 }
 
 module.exports = {listProducts, addProduct};

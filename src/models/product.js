@@ -40,18 +40,18 @@ function addProduct(data, cb) {
 }
 
 function getProductDetails(data, cb) {
-    var sql = `SELECT p.Name as name, p.Price as price, p.Description
-               as description, if((SELECT COUNT(*) FROM OrderDetails
-               as od LEFT JOIN OrderItems as ON oi.OrderID = od.ID
-               WHERE oi.productID = p.ID AND od.UserId = ? AND od.OrderStatus = 1) 
-               > 0, 1, 0) AS addedToCart FROM Products AS p WHERE p.ID = ? LIMIT 1`;
+    var sql = 
+    `SELECT p.Name as name, p.price as price, p.description as description,
+    IF((SELECT COUNT(*) FROM OrderDetails as od LEFT JOIN OrderItems as oi ON oi.OrderID = od.ID
+    WHERE oi.productID = p.ID AND od.UserId = ? AND od.OrderStatus = 1) > 0,
+    1, 0) AS addedToCart FROM Products AS p WHERE p.ID = ? LIMIT 1`;
 
     var values = [];
     values.push(data.userId);
     values.push(data.productId);
-    sqlConnection.executeQuery(sql, values, function (err, result) {
-         cb(err, result);
-    });
+    sqlConnection.executeQuery(sql, values, function(err, result) {
+        cb(err, result);
+    })
 }
 
 module.exports = {listProducts, addProduct, getProductDetails};

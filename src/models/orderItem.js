@@ -5,9 +5,9 @@ var sql = ` INSERT INTO OrderItems
             (OrderID, ProductID, Quantity, CreatedAt, UpdatedAt)
             VALUES (?, ?, ?, now(), now())`;
 var values = [];
-values.push(orderId);
-values.push(productId);
-values.push(quantity);
+values.push(data.orderId);
+values.push(data.productId);
+values.push(data.quantity);
 sqlConnection.executeQuery(sql, values, function(err, result) {
     cb(err, result);
   });

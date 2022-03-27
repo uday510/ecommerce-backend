@@ -3,7 +3,6 @@ const productController = require("../../src/controllers/productController");
 const { mockRequest, mockResponse } = require('../mocker');
 const jestMock = require('jest-mock');
 
-
 const testPayload = [
     {
         "id": 1,
@@ -47,18 +46,18 @@ test('The product controller returns error on all product listing', async () => 
     expect(res.send).toHaveBeenCalledWith({message: "Not ok"});
 });
 
+// test('The product controller should not call addProduct', async () => {
+//     const req = mockRequest();
+//     const res = mockResponse();
+//     const spy = jestMock.spyOn(productModel, 'addProduct').mockImplementation((data, cb) => {
+//         cb(null, true);
+//     });
+
+//     await productController.addProduct(req, res);
+//     expect(spy).toHaveBeenCalledTimes(0);
+// })
+
 test('The product controller should not call addProduct', async () => {
-    const req = mockRequest();
-    const res = mockResponse();
-    const spy = jestMock.spyOn(productModel, 'addProduct').mockImplementation((data, cb) => {
-        cb(null, true);
-    });
-
-    await productController.addProduct(req, res);
-    expect(spy).toHaveBeenCalledTimes(0);
-})
-
-test('The product controller should add a product', async () => {
     const req = mockRequest();
     req.body = {
         name: "test",
@@ -103,3 +102,6 @@ test('The product controller returns error on add product', async () => {
         message: "Not ok"
     })
 })
+
+
+

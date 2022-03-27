@@ -14,7 +14,7 @@ const testPayLoad = [
     }
 ];
 
-it('Category controller should return list of category on all category', async() => {
+it('Category controller should return error on n all category', async() => {
     const spy = jestMock.spyOn(categoryModel, 'listCategories').mockImplementation( (cb) => {
         cb(new Error("This is a new error"), null); 
     });
@@ -30,7 +30,7 @@ it('Category controller should return list of category on all category', async()
           success: false,
     });
 
-})
+});
 
 it('Category controller should return list of category on all category', async() => {
     const spy = jestMock.spyOn(categoryModel, 'listCategories').mockImplementation( (cb) => {
