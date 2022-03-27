@@ -9,14 +9,9 @@ function createOrder(req, res) {
         success: false,
         msg: "Invalid params for creating order"
     };
-    console.log("ONE");
-    if(data.userId && data.productId) {
-        console.log("TWO");
-        data.quantity = 1;
+    if(data.userId && data.productId && data.quantity) {
         Product.getProductDetails(data, function(err, product) {
-            console.log("THREE");
             if(err) {
-                console.log("FOUR");
                 console.log("error in fetching products",err);
                 responseData.msg = "Error in creating the order";
                 return res.status(500).send(responseData);
@@ -28,7 +23,6 @@ function createOrder(req, res) {
                     return res.status(500).send(responseData);
                 }
                 if(order.length > 0) {
-                    console.log("FIVE");
                     data.total = parseInt(order[0].total, 10) + parseInt(product[0].price, 10);
                     data.orderId = order[0].ID;
                     OrderDetails.editOrder(data, function (err2, orderDetail) {
@@ -52,8 +46,7 @@ function createOrder(req, res) {
                         })
                     });
                 } else {
-                    console.log("SIX");
-                    data.total = parseInt(product[0].price, 10);
+                    data.total = data.quantity * parseInt(product[0].price, 10);
                     OrderDetails.addOrder(data, function(err2, orderDetail) {
                         if(err2) {
                             console.log("error in adding new order",err);

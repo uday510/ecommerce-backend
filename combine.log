@@ -88,3 +88,5 @@
 {"level":"info","message":"API Path","path":"/v1/order/add"}
 {"body":{"productId":52,"userId":142},"level":"info","message":"API Input"}
 {"level":"info","message":"API Path","path":"/v1/order/add"}
+{"body":{"productId":53,"quantity":60,"userId":142},"level":"info","message":"API Input"}
+{"level":"info","message":"API Path","path":"/v1/order/add"}
